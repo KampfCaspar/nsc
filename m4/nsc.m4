@@ -99,7 +99,7 @@ define(DH, `nsc_set_name($1)nsc_iterate(`nsc_AONLY', shift($@))dnl')
 
 # Subdomain specification and glue records
 
-define(D, `nsc_set_name($1)dnl')
+define(D, `$ORIGIN $1.`'nsc_set_name($1)`'define(`CURRENT_DOMAIN',$1.)')
 define(GLUE, `DH($@)')
 
 # NS record
