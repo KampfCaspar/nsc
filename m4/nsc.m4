@@ -9,11 +9,11 @@ include(m4/dnslib.m4)
 
 # Version number
 
-ifdef(`HASHING', `define(`VERSION',`YYYYMMDDNN')', `
+ifdef(`HASHING', `define(`VERSION',`YYMMDDNN00')', `
 
 ifdef(`VERS',`',`nsc_fatal_error(`VERS macro not defined')')
 
-define(TODAY_CODE, translit(esyscmd(`date +"%Y%m%d"'),`
+define(TODAY_CODE, translit(esyscmd(`date +"%y%m%d"'),`
 ',`'))
 sinclude(VERS)
 # Backward compatibility with NSC 2.x version files
@@ -22,7 +22,7 @@ ifdef(`subver_num', `define(`SUBVER_NUM',subver_num)undefine(`subver_num')')
 ifelse(TODAY_CODE, LAST_TODAY_CODE, `', `define(`SUBVER_NUM',1)')
 syscmd(echo >VERS "`define'(`LAST_TODAY_CODE',TODAY_CODE) `define'(`SUBVER_NUM',incr(SUBVER_NUM))")
 ifelse(eval(SUBVER_NUM > 99),1,`nsc_fatal_error(`Too many zone changes in a single day, you must tweak 'VERS` manually')')
-define(`VERSION',TODAY_CODE`'format(`%02d', SUBVER_NUM))
+define(`VERSION',TODAY_CODE`'format(`%02d00', SUBVER_NUM))
 
 ')
 
